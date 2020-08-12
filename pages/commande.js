@@ -18,11 +18,11 @@ useEffect(()=>{
 },[])
     
     const addPlat = (addPlat) => {
-            console.log(addPlat)
+            
         const searchExistingPlat = commandeList.filter(plat => plat.name === addPlat.name)
 
         if(searchExistingPlat.length > 0 ){
-            console.log('ancien')
+            
             const platWithNewQty = {...searchExistingPlat[0],qty:searchExistingPlat[0].qty+1}
             const commandWithoutExistingPlat =  commandeList.filter(plat => plat.name !== addPlat.name)
 
@@ -30,9 +30,7 @@ useEffect(()=>{
 
             setCommandList([...commandWithoutExistingPlat,platWithNewQty])
             
-        }else{
-            console.log('new')
-            
+        }else{        
 
             setCommandList([...commandeList,{...addPlat,qty:1}])
         }
@@ -41,9 +39,20 @@ useEffect(()=>{
 
     const removePlat = removePlat => {
 
-            const newCommandList =  commandeList.filter(plat => plat.name !== removePlat.name)
 
-            setCommandList(newCommandList)
+        if(removePlat.qty === 1){
+            console.log('qty =1')
+            setCommandList(commandeList.filter(plat => plat.name !== removePlat.name))
+        }else{
+            console.log('qty =2..')
+            const newPlatQty = {...removePlat,qty:removePlat.qty - 1}
+           const listWithoutRemovePlat = commandeList.filter(plat => plat.name !== removePlat.name)
+            setCommandList([...listWithoutRemovePlat,newPlatQty])
+        }
+        
+          
+
+           
     }
 
 
@@ -57,7 +66,7 @@ useEffect(()=>{
 
             <div>
                 <h4>Votre commande</h4>
-                <ViewCommande commandList={commandeList} addPlat={addPlat} />
+                <ViewCommande commandList={commandeList} addPlat={addPlat} removePlat={removePlat}/>
             </div>
 
             <div className="commande-menu-section">
