@@ -60,9 +60,21 @@ useEffect(()=>{
     }
 
     const commander = async ()=>{
-        const {data} = await axios.post(`/api/order?tableId=${tableId}`,{commandeList})
+        try {
 
-        console.log('test api',data)
+            const {data} = await axios.post(`/api/order?tableId=${tableId}`,{commandeList})
+
+            if(data){
+                Router.push(`/resume?tableId=${tableId}`)
+            }
+            
+            
+        } catch (error) {
+            
+        }
+        
+
+        
     }
 
 
@@ -76,7 +88,7 @@ useEffect(()=>{
 
             <div>
                 <h4>Votre commande</h4>
-                <ViewCommande commandList={commandeList} addPlat={addPlat} removePlat={removePlat}/>
+                <ViewCommande isFacture={false} commandList={commandeList} addPlat={addPlat} removePlat={removePlat}/>
             </div>
 
             <div className="commande-menu-section">
@@ -101,7 +113,7 @@ useEffect(()=>{
             </div>
 
             <div className="command-action-section">
-                <button onClick={()=>Router.back()}>Annuler</button>
+                <button onClick={()=>Router.push('/')}>Annuler</button>
 
                 <button onClick={commander}>Commander</button>
             </div>

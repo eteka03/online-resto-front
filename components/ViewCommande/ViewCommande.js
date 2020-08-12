@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {orderBy} from 'lodash'
-export default function ViewCommande({commandList,addPlat,removePlat}) {
+export default function ViewCommande({isFacture,commandList,addPlat,removePlat}) {
 
 
     const sortCommand = orderBy(commandList,['name'],"asc")
@@ -22,10 +22,12 @@ export default function ViewCommande({commandList,addPlat,removePlat}) {
                             <td>{plat.name}</td>
                             <td>{plat.price}</td>
                             <td>{plat.qty}</td>
-                            <td><button onClick={()=>addPlat(plat)}>+</button><span> </span> <button onClick={()=>removePlat(plat)}>-</button></td>
+                            <td>  {isFacture ? '' : <> <button onClick={()=>addPlat(plat)}>+</button><span> </span> <button onClick={()=>removePlat(plat)}>-</button></>}</td>
                         </tr>
                         )
                     })}
+
+                   
                 </tbody>
                
                    
