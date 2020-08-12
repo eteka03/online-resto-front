@@ -20,28 +20,17 @@ const NavBar = (props) => {
     <div>
       <Navbar  className={styles.customNav} light expand="md">
           <Link href="/">
-          <a>AOF</a>
+          <a>Online-resto</a>
           </Link>
         
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
 
-          <Link href="/tourisme" passHref>        
-                <a>Tourisme</a>               
+          <Link href="/about" passHref>        
+                <a>about</a>               
             </Link>          
-                <Link href="/hotels">
-                <a >Hotels</a>
-                </Link>          
-            
-                <Link href="/gastronomie">
-                <a >Restaurants</a>
-                </Link>   
-
-                <Link href="/restaurants">
-                <a >Business</a>
-                </Link>             
-        
+                
           </Nav>
           
         </Collapse>

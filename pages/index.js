@@ -17,7 +17,7 @@ export default function Home() {
       e.preventDefault()
      
      if( isRealNumberAndInteger(numero)  && isBetweenTableNumber(numero) ){
-       Router.push('/commande')
+       Router.push('/commande?table=6')
      }else{
       setIsValid(true)
      }  
